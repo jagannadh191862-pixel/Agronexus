@@ -1,43 +1,595 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@layer base {
-  body {
-    background-color: #0c0a09;
-    color: #f5f5f4;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* ============================================================
+   AGRO NEXUS — Design System Tokens & Global Styles
+   Evidence-Driven Agricultural Intelligence
+   ============================================================ */
 
-  #root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+:root {
+  /* Brand Palette */
+  --clr-brand:        #10b981; /* emerald-500 */
+  --clr-brand-dark:   #065f46; /* emerald-900 */
+  --clr-brand-glow:   rgba(16, 185, 129, 0.18);
+  --clr-bg:           #0c0a09; /* stone-950 */
+  --clr-surface:      #1c1917; /* stone-900 */
+  --clr-surface-2:    #292524; /* stone-800 */
+  --clr-border:       #292524;
+  --clr-text:         #f5f5f4; /* stone-100 */
+  --clr-text-muted:   #a8a29e; /* stone-400 */
+  --clr-danger:       #f43f5e; /* rose-500 */
+  --clr-warning:      #f59e0b; /* amber-500 */
+  --clr-info:         #38bdf8; /* sky-400 */
+
+  /* Shadows */
+  --shadow-brand:     0 0 40px rgba(16, 185, 129, 0.12);
+  --shadow-card:      0 4px 24px rgba(0, 0, 0, 0.4);
+
+  /* Border radius */
+  --radius-card:      1.25rem;
+  --radius-pill:      9999px;
+
+  /* Transition */
+  --transition-ui:    150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* ============================================================
+   BASE RESETS
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
-::-webkit-scrollbar-track {
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Code / monospace */
+code, kbd, .font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #1c1917; }
+::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-brand); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+
+::selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: #fff;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+/* Fade in from below */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in from top */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide in left */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Slide in right */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Gentle scale pop */
+@keyframes scalePop {
+  0%   { opacity: 0; transform: scale(0.88); }
+  60%  { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Shimmer scan line */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Pulse glow ring */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--clr-brand-glow); }
+  50%       { box-shadow: 0 0 0 12px transparent; }
+}
+
+/* Scan line progress */
+@keyframes scanLine {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+
+/* Float oscillate */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* Orbit ring */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* Data bar fill */
+@keyframes barFill {
+  from { width: 0%; }
+}
+
+/* Ripple on click */
+@keyframes ripple {
+  from { transform: scale(0); opacity: 0.5; }
+  to   { transform: scale(4); opacity: 0; }
+}
+
+/* Dot blink typing */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Counter count-up (just uses CSS, JS for number) */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient motion */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Leaf sway */
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50%       { transform: rotate(4deg); }
+}
+
+/* Radar ping */
+@keyframes radarPing {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.0); opacity: 0; }
+}
+
+/* ============================================================
+   ANIMATION UTILITIES
+   ============================================================ */
+
+.anim-fadeInUp    { animation: fadeInUp    0.45s ease-out both; }
+.anim-fadeInDown  { animation: fadeInDown  0.4s  ease-out both; }
+.anim-slideLeft   { animation: slideInLeft 0.5s  ease-out both; }
+.anim-slideRight  { animation: slideInRight 0.5s ease-out both; }
+.anim-scalePop    { animation: scalePop    0.4s  ease-out both; }
+.anim-float       { animation: float 6s ease-in-out infinite; }
+.anim-glowPulse   { animation: glowPulse 2.5s ease-in-out infinite; }
+.anim-sway        { animation: sway 3s ease-in-out infinite; }
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* ============================================================
+   GRADIENT TEXT UTILITY
+   ============================================================ */
+
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #a7f3d0 50%, #10b981 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #fde68a 50%, #d97706 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ============================================================
+   SHIMMER LOADER
+   ============================================================ */
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.08) 40%,
+    rgba(16, 185, 129, 0.15) 50%,
+    rgba(16, 185, 129, 0.08) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease infinite;
+}
+
+/* ============================================================
+   GLASS MORPHISM CARD
+   ============================================================ */
+
+.glass-card {
+  background: rgba(28, 25, 23, 0.7);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* ============================================================
+   INTERACTIVE CARD HOVER LIFT
+   ============================================================ */
+
+.card-hover {
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.08), var(--shadow-card);
+}
+.card-hover:active {
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   PROGRESS BARS (ANIMATED FILL)
+   ============================================================ */
+
+.progress-bar-fill {
+  animation: barFill 0.8s ease-out both;
+}
+
+/* ============================================================
+   SCORE RING (SVG CIRCLE)
+   ============================================================ */
+
+.score-ring {
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.5));
+}
+
+/* ============================================================
+   TYPEWRITER CURSOR
+   ============================================================ */
+
+.typewriter-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: var(--clr-brand);
+}
+
+/* ============================================================
+   RADAR PULSE DOT
+   ============================================================ */
+
+.radar-dot {
+  position: relative;
+}
+.radar-dot::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-brand);
+  animation: radarPing 2s ease-out infinite;
+}
+
+/* ============================================================
+   NEON BORDER GLOW
+   ============================================================ */
+
+.neon-border {
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.3),
+    0 0 12px rgba(16, 185, 129, 0.15),
+    inset 0 0 12px rgba(16, 185, 129, 0.04);
+}
+
+/* ============================================================
+   DATA STREAM LINES (decorative)
+   ============================================================ */
+
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+.data-stream::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--clr-brand), transparent);
+  animation: scanLine 2.5s linear infinite;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   SENSOR NODE GRID PATTERN
+   ============================================================ */
+
+.grid-pattern {
+  background-image:
+    radial-gradient(var(--clr-brand) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.07;
+}
+
+/* ============================================================
+   TOPOGRAPHIC LINES OVERLAY
+   ============================================================ */
+
+.topo-overlay {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 23px,
+    rgba(16, 185, 129, 0.04) 23px,
+    rgba(16, 185, 129, 0.04) 24px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 23px,
+    rgba(16, 185, 129, 0.04) 23px,
+    rgba(16, 185, 129, 0.04) 24px
+  );
+}
+
+/* ============================================================
+   AI STATUS BADGE — PULSE
+   ============================================================ */
+
+.ai-badge-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   BUTTON VARIANTS
+   ============================================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  border: none;
+  transition: filter var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+.btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(41, 37, 36, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #d6d3d1;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: background var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui);
+}
+.btn-secondary:hover {
+  background: rgba(41, 37, 36, 1);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #fff;
+}
+
+/* ============================================================
+   INPUT STYLES
+   ============================================================ */
+
+.input-field {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.75rem;
+  background: rgba(12, 10, 9, 0.8);
+  border: 1px solid rgba(41, 37, 36, 0.9);
+  color: var(--clr-text);
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-ui), box-shadow var(--transition-ui);
+}
+.input-field:focus {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+.input-field::placeholder {
+  color: var(--clr-text-muted);
+}
+
+/* SELECT */
+select.input-field {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 2.25rem;
+}
+select.input-field option {
   background: #1c1917;
-}
-::-webkit-scrollbar-thumb {
-  background: #292524;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
+  color: #f5f5f4;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* RANGE SLIDER */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 9999px;
+  background: #292524;
+  outline: none;
+  cursor: pointer;
+  transition: background var(--transition-ui);
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--clr-brand);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  transition: box-shadow 150ms ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================================
+   KNOWLEDGE GRAPH CANVAS
+   ============================================================ */
+
+#knowledge-graph-canvas {
+  cursor: grab;
+}
+#knowledge-graph-canvas:active {
+  cursor: grabbing;
+}
+
+/* ============================================================
+   CHAT BUBBLES
+   ============================================================ */
+
+.chat-bubble-ai {
+  position: relative;
+  background: linear-gradient(135deg, #1c1917, #1a2e1c);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 1rem 1rem 1rem 0.25rem;
+}
+
+.chat-bubble-farmer {
+  background: linear-gradient(135deg, #064e3b, #065f46);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 1rem 1rem 0.25rem 1rem;
+}
+
+/* ============================================================
+   UTILITY: SENSOR STATUS COLORS
+   ============================================================ */
+
+.sensor-ok       { color: #10b981; }
+.sensor-warning  { color: #f59e0b; }
+.sensor-critical { color: #f43f5e; }
+.sensor-quarantine { color: #f97316; }
+
+/* ============================================================
+   RESPONSIVE LAYOUT HELPERS
+   ============================================================ */
+
+.page-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ============================================================
+   RESPONSIVE TYPOGRAPHY SCALE
+   ============================================================ */
+
+.text-display {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.text-title {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.text-subtitle {
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--clr-text-muted);
+}
+
+/* ============================================================
+   PRINT OVERRIDES
+   ============================================================ */
+
+@media print {
+  body { background: #fff; color: #000; }
+  .no-print { display: none; }
 }
