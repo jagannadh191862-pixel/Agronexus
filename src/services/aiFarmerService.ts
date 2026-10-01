@@ -448,7 +448,7 @@ export class AiFarmerService {
 
 You can ask me about crop diseases, yellow or damaged leaves, pests, crop selection, irrigation, fertilizer, soil health, weather conditions, crop suitability, or why AgroNexus made a recommendation.
 
-I will use the available field information to give you practical guidance. If the available information is not enough, I will tell you what additional information is needed.`
+I will use the available field information to give you practical guidance. If the available information is not enough, I will tell you what additional information is needed.`,
           te: `ప్రస్తుత AgroNexus సమాధానం అప్లికేషన్‌లో ఉన్న ఫీల్డ్ సమాచారంపై ఆధారపడింది: ${crop}, ${soil} నేల, pH ${ph}, ${temperature}°C, ${humidity}% తేమ, ${rainfall} మిమీ వర్షపాతం, ${water} నీటి లభ్యత మరియు ${season} సీజన్. అందుబాటులో ఉంటే వ్యాధి మరియు పంట సూచనలు కూడా ఉపయోగించబడతాయి. ఈ సమాధానాన్ని స్వతంత్ర శాస్త్రీయ నిర్ధారణగా కాకుండా Evidence Explorerలో ఆధారాలు మరియు provenanceను పరిశీలించండి.`,
           hi: `वर्तमान AgroNexus उत्तर एप्लिकेशन में उपलब्ध खेत की जानकारी पर आधारित है: ${crop}, ${soil} मिट्टी, pH ${ph}, ${temperature}°C, ${humidity}% नमी, ${rainfall} मिमी वर्षा, ${water} पानी और ${season} मौसम। उपलब्ध होने पर रोग और फसल सुझाव भी उपयोग किए जाते हैं। इस उत्तर को स्वतंत्र वैज्ञानिक निदान न मानें; Evidence Explorer में उपलब्ध evidence और provenance देखें।`,
         }
