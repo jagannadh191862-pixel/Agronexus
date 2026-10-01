@@ -188,18 +188,25 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Compute disease analysis
   const computeDiseaseAnalysis = (): DiseaseAnalysisResult => {
-    return diseaseAnalysisService.analyze({
-      cropName: selectedCrop,
-      state: selectedState,
-      district: selectedDistrict,
-      temperature,
-      humidity,
-      soil: selectedSoil,
-      symptoms,
-      voiceObservation,
-      hasImage: !!capturedImage
-    });
-  };
+  return diseaseAnalysisService.analyze({
+    cropName: selectedCrop,
+    state: selectedState,
+    district: selectedDistrict,
+    temperature,
+    humidity,
+    soil: selectedSoil,
+    symptoms,
+    voiceObservation,
+    hasImage: !!capturedImage,
+    imageFeatures: capturedImage
+      ? {
+          lesionColor: 'unknown',
+          pattern: 'unknown',
+          affectedArea: 0
+        }
+      : undefined
+  });
+};
 
   const [cropRecommendations, setCropRecommendations] = useState<CropRecommendation[]>(() => computeCropRecommendations());
   const [environmentAnalysis, setEnvironmentAnalysis] = useState<EnvironmentAnalysisResult>(() => computeEnvironmentAnalysis());

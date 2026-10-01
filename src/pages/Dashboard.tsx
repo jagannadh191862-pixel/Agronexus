@@ -198,6 +198,80 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
+            {/* Farmer Marketplace & Direct Connection Services */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        {/* Farm to Customer */}
+        <a
+          href="https://farm-to-shop-flow.lovable.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group p-6 rounded-3xl bg-gradient-to-br from-emerald-950/80 via-stone-900 to-stone-900 border border-emerald-800/50 hover:border-emerald-500/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-950/40"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-900/70 border border-emerald-700/50 flex items-center justify-center">
+                <Sprout className="w-6 h-6 text-emerald-400" />
+              </div>
+
+              <div>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-emerald-400">
+                  Direct Agriculture Marketplace
+                </p>
+                <h3 className="text-xl font-black text-white mt-1">
+                  Farm to Customer
+                </h3>
+                <p className="text-xs text-stone-300 mt-1">
+                  Connect farms directly with customers.
+                </p>
+              </div>
+            </div>
+
+            <ExternalLink className="w-5 h-5 text-stone-400 group-hover:text-emerald-400 transition-colors" />
+          </div>
+
+          <div className="mt-5 flex items-center gap-2 text-xs font-medium text-emerald-400">
+            Open Farm to Customer
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </a>
+
+        {/* Hand 2 Home */}
+        <a
+          href="https://homegrown-threads-bazaar.lovable.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group p-6 rounded-3xl bg-gradient-to-br from-amber-950/60 via-stone-900 to-stone-900 border border-amber-800/40 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-950/30"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-amber-900/60 border border-amber-700/50 flex items-center justify-center">
+                <ExternalLink className="w-6 h-6 text-amber-400" />
+              </div>
+
+              <div>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-amber-400">
+                  Farmer & Artisan Marketplace
+                </p>
+                <h3 className="text-xl font-black text-white mt-1">
+                  Hand 2 Home
+                </h3>
+                <p className="text-xs text-stone-300 mt-1">
+                  Explore organic products and handloom connections.
+                </p>
+              </div>
+            </div>
+
+            <ExternalLink className="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition-colors" />
+          </div>
+
+          <div className="mt-5 flex items-center gap-2 text-xs font-medium text-amber-400">
+            Open Hand 2 Home
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </a>
+
+      </div>
 
       {/* Main Grid: Disease Risk Monitor & Crop Recommendations */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
